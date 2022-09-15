@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            position: relative;
+            left: 50px;
+            top: 150px;
+            width: 600px;
+            height: 300px;
+            background-color: yellow;
+            /* background-image: url(../image/img1.jpg); */
+            border: 1px solid #ccc;
+        }
+
+        .box img {
+            width: 600px;
+
+        }
+
+        .zo {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 179, 0, 0.3);
+            transform: translate(-50%, -50%);
+        }
+
+        .big {
+            display: none;
+            position: absolute;
+            left: 610px;
+            top: 0;
+            width: 500px;
+            height: 500px;
+            background-color: pink;
+            z-index: 999;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <img src="../image/img1.jpg" alt="">
+        <div class="zo"></div>
+        <div class="big"></div>
+    </div>
+
+    <script>
+        var box = document.querySelector('.box')
+        var zo = document.querySelector('.zo')
+        var img = document.querySelector('.box').querySelector('img')
+        var big = document.querySelector('.big')
+
+
+        box.addEventListener('mouseover', function(){
+                zo.style.display = 'block'
+                big.style.display = 'block'
+            })
+
+        img.addEventListener('mouseout', function(){
+                zo.style.display = 'none'
+                big.style.display = 'none'
+
+            })
+
+        box.addEventListener('mousemove', function(e){  
+            var x = e.pageX - box.offsetLeft
+            var y = e.pageY - box.offsetTop
+            
+            if (x <= 100) {
+                x = 100;
+            }
+            if (x >= 500) {
+                x = 500;
+            }
+            if (y <= 100) {
+                y = 100;
+            }
+            if (y >= 237) {
+                y = 237;
+            }
+
+            
+            zo.style.left = x + 'px'
+            zo.style.top = y + 'px'
+            // console.log(img.offsetWidth);
+            console.log(x,y);
+        
+        })
+
+    </script>
+</body>
+</html>
